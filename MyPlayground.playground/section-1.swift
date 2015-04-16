@@ -192,11 +192,12 @@ var shapedesciption = shape.simpleDescription()
 shape.saynumber(23)
 
 class NamedShape {
-    var numberOfSides:Int = 4
+    var numberOfSides:Int
     var name:String
     
     init(name:String){
         self.name = name
+        self.numberOfSides = 0
     }
     
     func simpleDescription()->String{
@@ -229,7 +230,82 @@ let test = Square(sideLength: 3.0, name: "Rectangle")
 test.area()
 test.simpleDescription()
 
+class Circle:NamedShape {
+    var radius:Double
+    
+    init(radius:Double, name:String){
+        self.radius = radius
+         /* A designated initializer must ensure that all of the “properties introduced by its class are initialized before it delegates up to a superclass initializer
+        */
+        super.init(name: name)
+    }
+    
+    func area()->Double{
+        let pai:Double = 3.1415926
+        return pai * radius * radius
+    }
+    
+    override func simpleDescription() -> String {
+        return "A Circle with radius of \(radius)"
+    }
+}
 
+var circletest = Circle(radius: 1.44, name: "Oval")
+circletest.area()
+circletest.simpleDescription()
+
+class EquilateralTriangle:NamedShape {
+    var sideLength:Double = 0.0
+    init(sideLength:Double, name:String){
+        self.sideLength = sideLength
+        super.init(name: name)
+        numberOfSides = 3
+    }
+    
+    //swift anazing getter and setter here
+    var perimeter:Double{
+        get {
+            return 3.0 * sideLength
+        }
+        set(newValue){
+            sideLength = newValue / 3.0
+        }
+    }
+    
+    override func simpleDescription() -> String {
+        return "An equilateral triangle with sides of length \(sideLength)."
+    }
+}
+var triangle = EquilateralTriangle(sideLength: 4.0, name: "MyTriangle")
+triangle.perimeter = 9.9
+triangle.simpleDescription()
+triangle.sideLength
+
+class TriangleAndSquare {
+    var triangle:EquilateralTriangle{
+        willSet {
+            square.sideLength = newValue.sideLength
+        }
+    }
+    var square:Square{
+        willSet{
+            triangle.sideLength = newValue.sideLength
+        }
+    }
+    init(size:Double,name:String){
+        square = Square(sideLength: size, name: name)
+        triangle = EquilateralTriangle(sideLength: size, name: name)
+    }
+}
+
+var tas = TriangleAndSquare(size: 2.5, name: "mytas")
+tas.square.sideLength
+tas.triangle.sideLength
+
+let optionalSquare:Square?=Square(sideLength: 2.5, name: "optional square")
+let sideLength = optionalSquare?.sideLength
+
+//Enumerations and Structures
 
 
 
