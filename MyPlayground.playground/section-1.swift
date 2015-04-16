@@ -306,6 +306,40 @@ let optionalSquare:Square?=Square(sideLength: 2.5, name: "optional square")
 let sideLength = optionalSquare?.sideLength
 
 //Enumerations and Structures
+enum Rank:Int {
+    case Ace = 1
+    case Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten
+    case Jack, Queen, King
+    func simpleDescription()->String{
+        switch self{
+        case Ace:
+            return "ace"
+        case Jack:
+            return "jack"
+        case Queen:
+            return "queen"
+        case King:
+            return "king"
+        default:
+            return String(self.rawValue)
+        }
+        
+    }
+}
 
+let ace = Rank.Ace
+let aceRawValue = ace.rawValue
+ace.simpleDescription()
+
+func compare(item1:Rank, item2:Rank)->Int{
+    if item1.rawValue > item2.rawValue{
+        return 1
+    }else if item1.rawValue < item2.rawValue{
+        return -1
+    }
+    return 0
+}
+let two = Rank.Two
+compare(ace, two)
 
 
