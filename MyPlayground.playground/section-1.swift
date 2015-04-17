@@ -342,4 +342,52 @@ func compare(item1:Rank, item2:Rank)->Int{
 let two = Rank.Two
 compare(ace, two)
 
+var convertedRank = Rank(rawValue: 3)
+convertedRank?.simpleDescription()
+
+enum Suit {
+    case Spades,Hearts, Diamonds, Clubs
+    func simpleDescription()->String{
+        switch self{
+        case .Spades:
+            return "Spades"
+        case .Hearts:
+            return "Hearts"
+        case .Diamonds:
+            return "Diamonds"
+        case .Clubs:
+            return "Clubs"
+        }
+    }
+    func color()->String{
+        switch self{
+        case .Spades,.Clubs:
+            return "Black"
+        case .Diamonds,.Hearts:
+            return "Red"
+        }
+    }
+}
+var hearts = Suit.Hearts
+var heartsDescription = hearts.simpleDescription()
+
+hearts = Suit.Hearts
+var suitcolor = hearts.color()
+
+struct Card {
+    var rank:Rank
+    var suit:Suit
+    func simpleDescription()->String{
+        return "The \(rank.simpleDescription()) of \(suit.simpleDescription())"
+    }
+}
+
+var threeOfSpades = Card(rank: .Three, suit: .Spades)
+threeOfSpades.simpleDescription()
+
+
+
+
+
+
 
