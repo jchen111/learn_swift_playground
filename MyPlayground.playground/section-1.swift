@@ -173,139 +173,139 @@ import UIKit
 //sort(&nums) {$0 > $1}
 //nums
 
-class Shape {
-    var numberOfSides = 0
-    let constProperty = 10
-    func simpleDescription()->String{
-        return "A shape with \(numberOfSides) sides"
-    }
-    
-    func saynumber(c:Int)->String{
-        return "This number is \(c)"
-    }
-}
-
-var shape = Shape()
-shape.numberOfSides = 7
-var shapedesciption = shape.simpleDescription()
-
-shape.saynumber(23)
-
-class NamedShape {
-    var numberOfSides:Int
-    var name:String
-    
-    init(name:String){
-        self.name = name
-        self.numberOfSides = 0
-    }
-    
-    func simpleDescription()->String{
-        return "A shape with \(numberOfSides) sides"
-    }
-}
-
-var namedshape = NamedShape(name:"Rectangle")
-namedshape.simpleDescription()
-
-class Square:NamedShape {
-    var sideLength:Double
-    
-    init(sideLength:Double, name:String){
-        self.sideLength = sideLength
-        super.init(name: name)
-        numberOfSides = 4
-    }
-    
-    func area()->Double{
-        return sideLength * sideLength
-    }
-    
-    override func simpleDescription() -> String {
-        return "A square with sides of length \(sideLength)"
-    }
-}
-
-let test = Square(sideLength: 3.0, name: "Rectangle")
-test.area()
-test.simpleDescription()
-
-class Circle:NamedShape {
-    var radius:Double
-    
-    init(radius:Double, name:String){
-        self.radius = radius
-         /* A designated initializer must ensure that all of the “properties introduced by its class are initialized before it delegates up to a superclass initializer
-        */
-        super.init(name: name)
-    }
-    
-    func area()->Double{
-        let pai:Double = 3.1415926
-        return pai * radius * radius
-    }
-    
-    override func simpleDescription() -> String {
-        return "A Circle with radius of \(radius)"
-    }
-}
-
-var circletest = Circle(radius: 1.44, name: "Oval")
-circletest.area()
-circletest.simpleDescription()
-
-class EquilateralTriangle:NamedShape {
-    var sideLength:Double = 0.0
-    init(sideLength:Double, name:String){
-        self.sideLength = sideLength
-        super.init(name: name)
-        numberOfSides = 3
-    }
-    
-    //swift anazing getter and setter here
-    var perimeter:Double{
-        get {
-            return 3.0 * sideLength
-        }
-        set(newValue){
-            sideLength = newValue / 3.0
-        }
-    }
-    
-    override func simpleDescription() -> String {
-        return "An equilateral triangle with sides of length \(sideLength)."
-    }
-}
-var triangle = EquilateralTriangle(sideLength: 4.0, name: "MyTriangle")
-triangle.perimeter = 9.9
-triangle.simpleDescription()
-triangle.sideLength
-
-class TriangleAndSquare {
-    var triangle:EquilateralTriangle{
-        willSet {
-            square.sideLength = newValue.sideLength
-        }
-    }
-    var square:Square{
-        willSet{
-            triangle.sideLength = newValue.sideLength
-        }
-    }
-    init(size:Double,name:String){
-        square = Square(sideLength: size, name: name)
-        triangle = EquilateralTriangle(sideLength: size, name: name)
-    }
-}
-
-var tas = TriangleAndSquare(size: 2.5, name: "mytas")
-tas.square.sideLength
-tas.triangle.sideLength
-
-let optionalSquare:Square?=Square(sideLength: 2.5, name: "optional square")
-let sideLength = optionalSquare?.sideLength
-
-//Enumerations and Structures
+//class Shape {
+//    var numberOfSides = 0
+//    let constProperty = 10
+//    func simpleDescription()->String{
+//        return "A shape with \(numberOfSides) sides"
+//    }
+//    
+//    func saynumber(c:Int)->String{
+//        return "This number is \(c)"
+//    }
+//}
+//
+//var shape = Shape()
+//shape.numberOfSides = 7
+//var shapedesciption = shape.simpleDescription()
+//
+//shape.saynumber(23)
+//
+//class NamedShape {
+//    var numberOfSides:Int
+//    var name:String
+//    
+//    init(name:String){
+//        self.name = name
+//        self.numberOfSides = 0
+//    }
+//    
+//    func simpleDescription()->String{
+//        return "A shape with \(numberOfSides) sides"
+//    }
+//}
+//
+//var namedshape = NamedShape(name:"Rectangle")
+//namedshape.simpleDescription()
+//
+//class Square:NamedShape {
+//    var sideLength:Double
+//    
+//    init(sideLength:Double, name:String){
+//        self.sideLength = sideLength
+//        super.init(name: name)
+//        numberOfSides = 4
+//    }
+//    
+//    func area()->Double{
+//        return sideLength * sideLength
+//    }
+//    
+//    override func simpleDescription() -> String {
+//        return "A square with sides of length \(sideLength)"
+//    }
+//}
+//
+//let test = Square(sideLength: 3.0, name: "Rectangle")
+//test.area()
+//test.simpleDescription()
+//
+//class Circle:NamedShape {
+//    var radius:Double
+//    
+//    init(radius:Double, name:String){
+//        self.radius = radius
+//         /* A designated initializer must ensure that all of the “properties introduced by its class are initialized before it delegates up to a superclass initializer
+//        */
+//        super.init(name: name)
+//    }
+//    
+//    func area()->Double{
+//        let pai:Double = 3.1415926
+//        return pai * radius * radius
+//    }
+//    
+//    override func simpleDescription() -> String {
+//        return "A Circle with radius of \(radius)"
+//    }
+//}
+//
+//var circletest = Circle(radius: 1.44, name: "Oval")
+//circletest.area()
+//circletest.simpleDescription()
+//
+//class EquilateralTriangle:NamedShape {
+//    var sideLength:Double = 0.0
+//    init(sideLength:Double, name:String){
+//        self.sideLength = sideLength
+//        super.init(name: name)
+//        numberOfSides = 3
+//    }
+//    
+//    //swift anazing getter and setter here
+//    var perimeter:Double{
+//        get {
+//            return 3.0 * sideLength
+//        }
+//        set(newValue){
+//            sideLength = newValue / 3.0
+//        }
+//    }
+//    
+//    override func simpleDescription() -> String {
+//        return "An equilateral triangle with sides of length \(sideLength)."
+//    }
+//}
+//var triangle = EquilateralTriangle(sideLength: 4.0, name: "MyTriangle")
+//triangle.perimeter = 9.9
+//triangle.simpleDescription()
+//triangle.sideLength
+//
+//class TriangleAndSquare {
+//    var triangle:EquilateralTriangle{
+//        willSet {
+//            square.sideLength = newValue.sideLength
+//        }
+//    }
+//    var square:Square{
+//        willSet{
+//            triangle.sideLength = newValue.sideLength
+//        }
+//    }
+//    init(size:Double,name:String){
+//        square = Square(sideLength: size, name: name)
+//        triangle = EquilateralTriangle(sideLength: size, name: name)
+//    }
+//}
+//
+//var tas = TriangleAndSquare(size: 2.5, name: "mytas")
+//tas.square.sideLength
+//tas.triangle.sideLength
+//
+//let optionalSquare:Square?=Square(sideLength: 2.5, name: "optional square")
+//let sideLength = optionalSquare?.sideLength
+//
+////Enumerations and Structures
 enum Rank:Int {
     case Ace = 1
     case Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten
@@ -326,25 +326,25 @@ enum Rank:Int {
         
     }
 }
-
-let ace = Rank.Ace
-let aceRawValue = ace.rawValue
-ace.simpleDescription()
-
-func compare(item1:Rank, item2:Rank)->Int{
-    if item1.rawValue > item2.rawValue{
-        return 1
-    }else if item1.rawValue < item2.rawValue{
-        return -1
-    }
-    return 0
-}
-let two = Rank.Two
-compare(ace, two)
-
-var convertedRank = Rank(rawValue: 3)
-convertedRank?.simpleDescription()
-
+//
+//let ace = Rank.Ace
+//let aceRawValue = ace.rawValue
+//ace.simpleDescription()
+//
+//func compare(item1:Rank, item2:Rank)->Int{
+//    if item1.rawValue > item2.rawValue{
+//        return 1
+//    }else if item1.rawValue < item2.rawValue{
+//        return -1
+//    }
+//    return 0
+//}
+//let two = Rank.Two
+//compare(ace, two)
+//
+//var convertedRank = Rank(rawValue: 3)
+//convertedRank?.simpleDescription()
+//
 enum Suit {
     case Spades,Hearts, Diamonds, Clubs
     func simpleDescription()->String{
@@ -368,11 +368,12 @@ enum Suit {
         }
     }
 }
-var hearts = Suit.Hearts
-var heartsDescription = hearts.simpleDescription()
+//var hearts = Suit.Hearts
+//var heartsDescription = hearts.simpleDescription()
+//
+//hearts = Suit.Hearts
+//var suitcolor = hearts.color()
 
-hearts = Suit.Hearts
-var suitcolor = hearts.color()
 
 struct Card {
     var rank:Rank
@@ -380,10 +381,31 @@ struct Card {
     func simpleDescription()->String{
         return "The \(rank.simpleDescription()) of \(suit.simpleDescription())"
     }
+    
+    static func createDeck()->Array<Card>{
+        let s = [Suit.Spades,Suit.Hearts,Suit.Clubs,Suit.Diamonds]
+        let r = [Rank.Ace,Rank.Two,Rank.Three,Rank.Four,Rank.Five,Rank.Six,Rank.Seven,Rank.Eight,Rank.Nine,Rank.Ten,Rank.Jack,Rank.Queen,Rank.King]
+        var deck: [Card]=[]
+        
+        for suit in s{
+            for rank in r{
+                let card = Card(rank: rank, suit: suit)
+                deck.append(card)
+            }
+        }
+        return deck
+    }
 }
 
-var threeOfSpades = Card(rank: .Three, suit: .Spades)
-threeOfSpades.simpleDescription()
+//var threeOfSpades = Card(rank: .Three, suit: .Spades)
+//threeOfSpades.simpleDescription()
+var deck = Card.createDeck()
+for card in deck{
+    println(card.simpleDescription())
+}
+
+
+
 
 
 
